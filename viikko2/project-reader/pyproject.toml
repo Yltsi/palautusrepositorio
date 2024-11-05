@@ -2,12 +2,10 @@
 name = "project-reader"
 version = "0.1.0"
 description = ""
-authors = ["Yltsi <ylinemi@gmail.com>"]
-readme = "README.md"
+authors = ["Your Name <you@example.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.10"
-toml = "^0.10.2"
 
 
 [build-system]
