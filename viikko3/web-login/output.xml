@@ -1,0 +1,2434 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.1.1 (Python 3.11.4 on darwin)" generated="20241118 23:52:11.376" rpa="false" schemaversion="4">
+<suite id="s1" name="Tests" source="/Users/mikaylinen/palautusrepositorio/viikko3/web-login/src/tests">
+<suite id="s1-s1" name="Home" source="/Users/mikaylinen/palautusrepositorio/viikko3/web-login/src/tests/home.robot">
+<kw name="Open And Configure Browser" library="resource" type="SETUP">
+<if>
+<branch type="IF" condition="$BROWSER == 'chrome'">
+<kw name="Evaluate" library="BuiltIn">
+<var>${options}</var>
+<arg>sys.modules['selenium.webdriver'].ChromeOptions()</arg>
+<arg>sys</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20241118 23:52:11.453" level="INFO">${options} = &lt;selenium.webdriver.chrome.options.Options object at 0x106776f50&gt;</msg>
+<status status="PASS" starttime="20241118 23:52:11.453" endtime="20241118 23:52:11.453"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:11.452" endtime="20241118 23:52:11.453"/>
+</branch>
+<branch type="ELSE IF" condition="$BROWSER == 'firefox'">
+<kw name="Evaluate" library="BuiltIn">
+<var>${options}</var>
+<arg>sys.modules['selenium.webdriver'].FirefoxOptions()</arg>
+<arg>sys</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="NOT RUN" starttime="20241118 23:52:11.453" endtime="20241118 23:52:11.453"/>
+</kw>
+<status status="NOT RUN" starttime="20241118 23:52:11.453" endtime="20241118 23:52:11.453"/>
+</branch>
+<status status="PASS" starttime="20241118 23:52:11.452" endtime="20241118 23:52:11.453"/>
+</if>
+<if>
+<branch type="IF" condition="$HEADLESS == 'true'">
+<kw name="Set Selenium Speed" library="SeleniumLibrary">
+<arg>0</arg>
+<doc>Sets the delay that is waited after each Selenium command.</doc>
+<status status="PASS" starttime="20241118 23:52:11.453" endtime="20241118 23:52:11.453"/>
+</kw>
+<kw name="Call Method" library="BuiltIn">
+<arg>${options}</arg>
+<arg>add_argument</arg>
+<arg>--headless</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="PASS" starttime="20241118 23:52:11.453" endtime="20241118 23:52:11.453"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:11.453" endtime="20241118 23:52:11.453"/>
+</branch>
+<branch type="ELSE">
+<kw name="Set Selenium Speed" library="SeleniumLibrary">
+<arg>${DELAY}</arg>
+<doc>Sets the delay that is waited after each Selenium command.</doc>
+<status status="NOT RUN" starttime="20241118 23:52:11.453" endtime="20241118 23:52:11.453"/>
+</kw>
+<status status="NOT RUN" starttime="20241118 23:52:11.453" endtime="20241118 23:52:11.453"/>
+</branch>
+<status status="PASS" starttime="20241118 23:52:11.453" endtime="20241118 23:52:11.453"/>
+</if>
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>browser=${BROWSER}</arg>
+<arg>options=${options}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20241118 23:52:11.454" level="INFO">Opening browser 'chrome' to base url 'None'.</msg>
+<status status="PASS" starttime="20241118 23:52:11.453" endtime="20241118 23:52:12.040"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:11.452" endtime="20241118 23:52:12.040"/>
+</kw>
+<test id="s1-s1-t1" name="Click Login Link" line="8">
+<kw name="Reset Application And Go To Starting Page" type="SETUP">
+<kw name="Reset Application" library="resource">
+<kw name="Run Keyword" library="BuiltIn">
+<arg>AppLibrary.Reset Application</arg>
+<doc>Executes the given keyword with the given arguments.</doc>
+<kw name="Reset Application" library="AppLibrary">
+<status status="PASS" starttime="20241118 23:52:12.042" endtime="20241118 23:52:12.049"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:12.041" endtime="20241118 23:52:12.049"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:12.041" endtime="20241118 23:52:12.049"/>
+</kw>
+<kw name="Go To Starting Page" library="resource">
+<kw name="Go To" library="SeleniumLibrary">
+<arg>${HOME_URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<msg timestamp="20241118 23:52:12.050" level="INFO">Opening url 'http://localhost:5001'</msg>
+<status status="PASS" starttime="20241118 23:52:12.050" endtime="20241118 23:52:12.089"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:12.049" endtime="20241118 23:52:12.089"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:12.041" endtime="20241118 23:52:12.089"/>
+</kw>
+<kw name="Click Link" library="SeleniumLibrary">
+<arg>Login</arg>
+<doc>Clicks a link identified by ``locator``.</doc>
+<msg timestamp="20241118 23:52:12.091" level="INFO">Clicking link 'Login'.</msg>
+<status status="PASS" starttime="20241118 23:52:12.090" endtime="20241118 23:52:12.156"/>
+</kw>
+<kw name="Login Page Should Be Open" library="resource">
+<kw name="Title Should Be" library="SeleniumLibrary">
+<arg>Login</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<msg timestamp="20241118 23:52:12.164" level="INFO">Page title is 'Login'.</msg>
+<status status="PASS" starttime="20241118 23:52:12.157" endtime="20241118 23:52:12.164"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:12.157" endtime="20241118 23:52:12.164"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:12.040" endtime="20241118 23:52:12.164"/>
+</test>
+<test id="s1-s1-t2" name="Click Register Link" line="12">
+<kw name="Reset Application And Go To Starting Page" type="SETUP">
+<kw name="Reset Application" library="resource">
+<kw name="Run Keyword" library="BuiltIn">
+<arg>AppLibrary.Reset Application</arg>
+<doc>Executes the given keyword with the given arguments.</doc>
+<kw name="Reset Application" library="AppLibrary">
+<status status="PASS" starttime="20241118 23:52:12.165" endtime="20241118 23:52:12.168"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:12.165" endtime="20241118 23:52:12.168"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:12.165" endtime="20241118 23:52:12.168"/>
+</kw>
+<kw name="Go To Starting Page" library="resource">
+<kw name="Go To" library="SeleniumLibrary">
+<arg>${HOME_URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<msg timestamp="20241118 23:52:12.168" level="INFO">Opening url 'http://localhost:5001'</msg>
+<status status="PASS" starttime="20241118 23:52:12.168" endtime="20241118 23:52:12.179"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:12.168" endtime="20241118 23:52:12.179"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:12.165" endtime="20241118 23:52:12.179"/>
+</kw>
+<kw name="Click Link" library="SeleniumLibrary">
+<arg>Register new user</arg>
+<doc>Clicks a link identified by ``locator``.</doc>
+<msg timestamp="20241118 23:52:12.180" level="INFO">Clicking link 'Register new user'.</msg>
+<status status="PASS" starttime="20241118 23:52:12.180" endtime="20241118 23:52:12.221"/>
+</kw>
+<kw name="Register Page Should Be Open" library="resource">
+<kw name="Title Should Be" library="SeleniumLibrary">
+<arg>Register</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<msg timestamp="20241118 23:52:12.223" level="INFO">Page title is 'Register'.</msg>
+<status status="PASS" starttime="20241118 23:52:12.222" endtime="20241118 23:52:12.223"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:12.221" endtime="20241118 23:52:12.223"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:12.165" endtime="20241118 23:52:12.223"/>
+</test>
+<kw name="Close Browser" library="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20241118 23:52:12.223" endtime="20241118 23:52:12.301"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:11.383" endtime="20241118 23:52:12.301"/>
+</suite>
+<suite id="s1-s2" name="Login" source="/Users/mikaylinen/palautusrepositorio/viikko3/web-login/src/tests/login.robot">
+<kw name="Open And Configure Browser" library="resource" type="SETUP">
+<if>
+<branch type="IF" condition="$BROWSER == 'chrome'">
+<kw name="Evaluate" library="BuiltIn">
+<var>${options}</var>
+<arg>sys.modules['selenium.webdriver'].ChromeOptions()</arg>
+<arg>sys</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20241118 23:52:12.303" level="INFO">${options} = &lt;selenium.webdriver.chrome.options.Options object at 0x106790910&gt;</msg>
+<status status="PASS" starttime="20241118 23:52:12.303" endtime="20241118 23:52:12.303"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:12.303" endtime="20241118 23:52:12.303"/>
+</branch>
+<branch type="ELSE IF" condition="$BROWSER == 'firefox'">
+<kw name="Evaluate" library="BuiltIn">
+<var>${options}</var>
+<arg>sys.modules['selenium.webdriver'].FirefoxOptions()</arg>
+<arg>sys</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="NOT RUN" starttime="20241118 23:52:12.303" endtime="20241118 23:52:12.303"/>
+</kw>
+<status status="NOT RUN" starttime="20241118 23:52:12.303" endtime="20241118 23:52:12.303"/>
+</branch>
+<status status="PASS" starttime="20241118 23:52:12.303" endtime="20241118 23:52:12.303"/>
+</if>
+<if>
+<branch type="IF" condition="$HEADLESS == 'true'">
+<kw name="Set Selenium Speed" library="SeleniumLibrary">
+<arg>0</arg>
+<doc>Sets the delay that is waited after each Selenium command.</doc>
+<status status="PASS" starttime="20241118 23:52:12.303" endtime="20241118 23:52:12.303"/>
+</kw>
+<kw name="Call Method" library="BuiltIn">
+<arg>${options}</arg>
+<arg>add_argument</arg>
+<arg>--headless</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="PASS" starttime="20241118 23:52:12.303" endtime="20241118 23:52:12.304"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:12.303" endtime="20241118 23:52:12.304"/>
+</branch>
+<branch type="ELSE">
+<kw name="Set Selenium Speed" library="SeleniumLibrary">
+<arg>${DELAY}</arg>
+<doc>Sets the delay that is waited after each Selenium command.</doc>
+<status status="NOT RUN" starttime="20241118 23:52:12.304" endtime="20241118 23:52:12.304"/>
+</kw>
+<status status="NOT RUN" starttime="20241118 23:52:12.304" endtime="20241118 23:52:12.304"/>
+</branch>
+<status status="PASS" starttime="20241118 23:52:12.303" endtime="20241118 23:52:12.304"/>
+</if>
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>browser=${BROWSER}</arg>
+<arg>options=${options}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20241118 23:52:12.304" level="INFO">Opening browser 'chrome' to base url 'None'.</msg>
+<status status="PASS" starttime="20241118 23:52:12.304" endtime="20241118 23:52:12.870"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:12.303" endtime="20241118 23:52:12.870"/>
+</kw>
+<test id="s1-s2-t1" name="Login With Correct Credentials" line="8">
+<kw name="Reset Application Create User And Go To Login Page" type="SETUP">
+<kw name="Reset Application" library="resource">
+<kw name="Run Keyword" library="BuiltIn">
+<arg>AppLibrary.Reset Application</arg>
+<doc>Executes the given keyword with the given arguments.</doc>
+<kw name="Reset Application" library="AppLibrary">
+<status status="PASS" starttime="20241118 23:52:12.870" endtime="20241118 23:52:12.873"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:12.870" endtime="20241118 23:52:12.873"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:12.870" endtime="20241118 23:52:12.873"/>
+</kw>
+<kw name="Create User" library="resource">
+<arg>kalle</arg>
+<arg>kalle123</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<msg timestamp="20241118 23:52:12.900" level="FAIL">Maximum limit of started keywords and control structures exceeded.</msg>
+<status status="FAIL" starttime="20241118 23:52:12.900" endtime="20241118 23:52:12.900"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.900" endtime="20241118 23:52:12.900"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.900" endtime="20241118 23:52:12.900"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.899" endtime="20241118 23:52:12.900"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.899" endtime="20241118 23:52:12.900"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.899" endtime="20241118 23:52:12.900"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.899" endtime="20241118 23:52:12.900"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.899" endtime="20241118 23:52:12.900"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.899" endtime="20241118 23:52:12.900"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.899" endtime="20241118 23:52:12.900"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.899" endtime="20241118 23:52:12.901"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.898" endtime="20241118 23:52:12.901"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.898" endtime="20241118 23:52:12.901"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.898" endtime="20241118 23:52:12.901"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.898" endtime="20241118 23:52:12.901"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.898" endtime="20241118 23:52:12.901"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.898" endtime="20241118 23:52:12.901"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.898" endtime="20241118 23:52:12.901"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.898" endtime="20241118 23:52:12.901"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.898" endtime="20241118 23:52:12.901"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.897" endtime="20241118 23:52:12.901"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.897" endtime="20241118 23:52:12.901"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.897" endtime="20241118 23:52:12.901"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.897" endtime="20241118 23:52:12.901"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.897" endtime="20241118 23:52:12.901"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.897" endtime="20241118 23:52:12.901"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.897" endtime="20241118 23:52:12.901"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.897" endtime="20241118 23:52:12.901"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.896" endtime="20241118 23:52:12.901"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.896" endtime="20241118 23:52:12.901"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.896" endtime="20241118 23:52:12.901"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.896" endtime="20241118 23:52:12.902"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.896" endtime="20241118 23:52:12.902"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.896" endtime="20241118 23:52:12.902"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.896" endtime="20241118 23:52:12.902"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.896" endtime="20241118 23:52:12.902"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.896" endtime="20241118 23:52:12.902"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.881" endtime="20241118 23:52:12.902"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.881" endtime="20241118 23:52:12.902"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.881" endtime="20241118 23:52:12.902"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.881" endtime="20241118 23:52:12.902"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.881" endtime="20241118 23:52:12.902"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.880" endtime="20241118 23:52:12.902"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.879" endtime="20241118 23:52:12.902"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.879" endtime="20241118 23:52:12.903"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.879" endtime="20241118 23:52:12.903"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.879" endtime="20241118 23:52:12.903"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.879" endtime="20241118 23:52:12.903"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.879" endtime="20241118 23:52:12.903"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.879" endtime="20241118 23:52:12.903"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.878" endtime="20241118 23:52:12.903"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.878" endtime="20241118 23:52:12.903"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.878" endtime="20241118 23:52:12.903"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.878" endtime="20241118 23:52:12.903"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.877" endtime="20241118 23:52:12.903"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.877" endtime="20241118 23:52:12.903"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.877" endtime="20241118 23:52:12.903"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.877" endtime="20241118 23:52:12.903"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.877" endtime="20241118 23:52:12.903"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.877" endtime="20241118 23:52:12.903"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.877" endtime="20241118 23:52:12.903"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.877" endtime="20241118 23:52:12.903"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.876" endtime="20241118 23:52:12.903"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.876" endtime="20241118 23:52:12.904"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.876" endtime="20241118 23:52:12.904"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.876" endtime="20241118 23:52:12.904"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.876" endtime="20241118 23:52:12.904"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.876" endtime="20241118 23:52:12.904"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.876" endtime="20241118 23:52:12.904"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.876" endtime="20241118 23:52:12.904"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.876" endtime="20241118 23:52:12.904"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.875" endtime="20241118 23:52:12.904"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.875" endtime="20241118 23:52:12.904"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.875" endtime="20241118 23:52:12.904"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.875" endtime="20241118 23:52:12.904"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.875" endtime="20241118 23:52:12.904"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.875" endtime="20241118 23:52:12.904"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.875" endtime="20241118 23:52:12.904"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.875" endtime="20241118 23:52:12.904"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.875" endtime="20241118 23:52:12.904"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.875" endtime="20241118 23:52:12.904"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.875" endtime="20241118 23:52:12.904"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.874" endtime="20241118 23:52:12.904"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.874" endtime="20241118 23:52:12.904"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.874" endtime="20241118 23:52:12.904"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.874" endtime="20241118 23:52:12.904"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.874" endtime="20241118 23:52:12.904"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.874" endtime="20241118 23:52:12.904"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.874" endtime="20241118 23:52:12.904"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.874" endtime="20241118 23:52:12.904"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.874" endtime="20241118 23:52:12.904"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.873" endtime="20241118 23:52:12.904"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.873" endtime="20241118 23:52:12.905"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.873" endtime="20241118 23:52:12.905"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.873" endtime="20241118 23:52:12.905"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.873" endtime="20241118 23:52:12.905"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.873" endtime="20241118 23:52:12.905"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.873" endtime="20241118 23:52:12.905"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.873" endtime="20241118 23:52:12.905"/>
+</kw>
+<kw name="Go To Login Page" library="resource">
+<status status="NOT RUN" starttime="20241118 23:52:12.905" endtime="20241118 23:52:12.905"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.870" endtime="20241118 23:52:12.905"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.870" endtime="20241118 23:52:12.905">Setup failed:
+Maximum limit of started keywords and control structures exceeded.</status>
+</test>
+<test id="s1-s2-t2" name="Login With Incorrect Password" line="14">
+<kw name="Reset Application Create User And Go To Login Page" type="SETUP">
+<kw name="Reset Application" library="resource">
+<kw name="Run Keyword" library="BuiltIn">
+<arg>AppLibrary.Reset Application</arg>
+<doc>Executes the given keyword with the given arguments.</doc>
+<kw name="Reset Application" library="AppLibrary">
+<status status="PASS" starttime="20241118 23:52:12.907" endtime="20241118 23:52:12.909"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:12.907" endtime="20241118 23:52:12.909"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:12.906" endtime="20241118 23:52:12.909"/>
+</kw>
+<kw name="Create User" library="resource">
+<arg>kalle</arg>
+<arg>kalle123</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<msg timestamp="20241118 23:52:12.923" level="FAIL">Maximum limit of started keywords and control structures exceeded.</msg>
+<status status="FAIL" starttime="20241118 23:52:12.923" endtime="20241118 23:52:12.923"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.923" endtime="20241118 23:52:12.923"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.922" endtime="20241118 23:52:12.923"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.922" endtime="20241118 23:52:12.923"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.922" endtime="20241118 23:52:12.923"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.922" endtime="20241118 23:52:12.923"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.922" endtime="20241118 23:52:12.923"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.922" endtime="20241118 23:52:12.923"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.922" endtime="20241118 23:52:12.923"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.922" endtime="20241118 23:52:12.923"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.922" endtime="20241118 23:52:12.923"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.921" endtime="20241118 23:52:12.926"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.921" endtime="20241118 23:52:12.926"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.921" endtime="20241118 23:52:12.926"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.921" endtime="20241118 23:52:12.927"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.921" endtime="20241118 23:52:12.927"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.921" endtime="20241118 23:52:12.927"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.921" endtime="20241118 23:52:12.927"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.921" endtime="20241118 23:52:12.927"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.921" endtime="20241118 23:52:12.927"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.920" endtime="20241118 23:52:12.927"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.920" endtime="20241118 23:52:12.927"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.920" endtime="20241118 23:52:12.927"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.920" endtime="20241118 23:52:12.927"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.920" endtime="20241118 23:52:12.927"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.920" endtime="20241118 23:52:12.927"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.920" endtime="20241118 23:52:12.927"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.920" endtime="20241118 23:52:12.927"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.919" endtime="20241118 23:52:12.927"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.919" endtime="20241118 23:52:12.928"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.919" endtime="20241118 23:52:12.928"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.919" endtime="20241118 23:52:12.928"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.919" endtime="20241118 23:52:12.928"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.919" endtime="20241118 23:52:12.928"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.919" endtime="20241118 23:52:12.928"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.919" endtime="20241118 23:52:12.928"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.919" endtime="20241118 23:52:12.928"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.919" endtime="20241118 23:52:12.928"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.918" endtime="20241118 23:52:12.928"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.918" endtime="20241118 23:52:12.928"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.918" endtime="20241118 23:52:12.928"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.917" endtime="20241118 23:52:12.928"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.917" endtime="20241118 23:52:12.928"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.917" endtime="20241118 23:52:12.928"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.917" endtime="20241118 23:52:12.928"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.917" endtime="20241118 23:52:12.928"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.917" endtime="20241118 23:52:12.928"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.917" endtime="20241118 23:52:12.928"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.917" endtime="20241118 23:52:12.928"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.917" endtime="20241118 23:52:12.928"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.917" endtime="20241118 23:52:12.928"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.917" endtime="20241118 23:52:12.928"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.917" endtime="20241118 23:52:12.928"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.917" endtime="20241118 23:52:12.928"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.916" endtime="20241118 23:52:12.928"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.916" endtime="20241118 23:52:12.929"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.916" endtime="20241118 23:52:12.929"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.916" endtime="20241118 23:52:12.929"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.916" endtime="20241118 23:52:12.929"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.916" endtime="20241118 23:52:12.929"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.916" endtime="20241118 23:52:12.929"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.916" endtime="20241118 23:52:12.929"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.916" endtime="20241118 23:52:12.929"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.916" endtime="20241118 23:52:12.929"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.915" endtime="20241118 23:52:12.929"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.915" endtime="20241118 23:52:12.929"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.915" endtime="20241118 23:52:12.929"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.915" endtime="20241118 23:52:12.929"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.915" endtime="20241118 23:52:12.929"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.915" endtime="20241118 23:52:12.929"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.915" endtime="20241118 23:52:12.929"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.915" endtime="20241118 23:52:12.929"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.915" endtime="20241118 23:52:12.929"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.914" endtime="20241118 23:52:12.929"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.914" endtime="20241118 23:52:12.929"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.914" endtime="20241118 23:52:12.929"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.914" endtime="20241118 23:52:12.929"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.914" endtime="20241118 23:52:12.929"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.913" endtime="20241118 23:52:12.929"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.913" endtime="20241118 23:52:12.929"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.913" endtime="20241118 23:52:12.929"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.913" endtime="20241118 23:52:12.929"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.912" endtime="20241118 23:52:12.929"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.912" endtime="20241118 23:52:12.929"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.912" endtime="20241118 23:52:12.929"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.912" endtime="20241118 23:52:12.930"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.912" endtime="20241118 23:52:12.930"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.912" endtime="20241118 23:52:12.930"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.911" endtime="20241118 23:52:12.930"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.911" endtime="20241118 23:52:12.930"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.911" endtime="20241118 23:52:12.930"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.911" endtime="20241118 23:52:12.930"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.911" endtime="20241118 23:52:12.930"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.911" endtime="20241118 23:52:12.930"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.910" endtime="20241118 23:52:12.930"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.910" endtime="20241118 23:52:12.930"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.910" endtime="20241118 23:52:12.931"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.909" endtime="20241118 23:52:12.931"/>
+</kw>
+<kw name="Go To Login Page" library="resource">
+<status status="NOT RUN" starttime="20241118 23:52:12.931" endtime="20241118 23:52:12.931"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.906" endtime="20241118 23:52:12.931"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.906" endtime="20241118 23:52:12.932">Setup failed:
+Maximum limit of started keywords and control structures exceeded.</status>
+</test>
+<test id="s1-s2-t3" name="Login With Nonexistent Username" line="20">
+<kw name="Reset Application Create User And Go To Login Page" type="SETUP">
+<kw name="Reset Application" library="resource">
+<kw name="Run Keyword" library="BuiltIn">
+<arg>AppLibrary.Reset Application</arg>
+<doc>Executes the given keyword with the given arguments.</doc>
+<kw name="Reset Application" library="AppLibrary">
+<status status="PASS" starttime="20241118 23:52:12.932" endtime="20241118 23:52:12.934"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:12.932" endtime="20241118 23:52:12.934"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:12.932" endtime="20241118 23:52:12.934"/>
+</kw>
+<kw name="Create User" library="resource">
+<arg>kalle</arg>
+<arg>kalle123</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Create User" library="resource">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<msg timestamp="20241118 23:52:12.946" level="FAIL">Maximum limit of started keywords and control structures exceeded.</msg>
+<status status="FAIL" starttime="20241118 23:52:12.946" endtime="20241118 23:52:12.946"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.946" endtime="20241118 23:52:12.946"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.946" endtime="20241118 23:52:12.946"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.945" endtime="20241118 23:52:12.946"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.945" endtime="20241118 23:52:12.946"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.945" endtime="20241118 23:52:12.946"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.945" endtime="20241118 23:52:12.946"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.945" endtime="20241118 23:52:12.946"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.945" endtime="20241118 23:52:12.946"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.945" endtime="20241118 23:52:12.946"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.945" endtime="20241118 23:52:12.946"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.945" endtime="20241118 23:52:12.946"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.945" endtime="20241118 23:52:12.946"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.945" endtime="20241118 23:52:12.946"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.944" endtime="20241118 23:52:12.946"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.944" endtime="20241118 23:52:12.947"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.944" endtime="20241118 23:52:12.947"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.944" endtime="20241118 23:52:12.947"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.944" endtime="20241118 23:52:12.947"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.944" endtime="20241118 23:52:12.947"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.942" endtime="20241118 23:52:12.947"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.942" endtime="20241118 23:52:12.947"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.942" endtime="20241118 23:52:12.947"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.942" endtime="20241118 23:52:12.947"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.942" endtime="20241118 23:52:12.947"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.942" endtime="20241118 23:52:12.947"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.942" endtime="20241118 23:52:12.947"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.941" endtime="20241118 23:52:12.947"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.941" endtime="20241118 23:52:12.947"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.941" endtime="20241118 23:52:12.947"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.941" endtime="20241118 23:52:12.947"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.941" endtime="20241118 23:52:12.947"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.941" endtime="20241118 23:52:12.947"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.941" endtime="20241118 23:52:12.947"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.941" endtime="20241118 23:52:12.947"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.941" endtime="20241118 23:52:12.947"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.941" endtime="20241118 23:52:12.947"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.941" endtime="20241118 23:52:12.947"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.941" endtime="20241118 23:52:12.947"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.940" endtime="20241118 23:52:12.947"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.940" endtime="20241118 23:52:12.948"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.940" endtime="20241118 23:52:12.948"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.940" endtime="20241118 23:52:12.948"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.940" endtime="20241118 23:52:12.948"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.940" endtime="20241118 23:52:12.948"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.940" endtime="20241118 23:52:12.948"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.940" endtime="20241118 23:52:12.948"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.940" endtime="20241118 23:52:12.948"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.940" endtime="20241118 23:52:12.948"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.939" endtime="20241118 23:52:12.948"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.939" endtime="20241118 23:52:12.948"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.939" endtime="20241118 23:52:12.948"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.939" endtime="20241118 23:52:12.948"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.938" endtime="20241118 23:52:12.948"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.938" endtime="20241118 23:52:12.948"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.938" endtime="20241118 23:52:12.948"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.938" endtime="20241118 23:52:12.948"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.938" endtime="20241118 23:52:12.948"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.938" endtime="20241118 23:52:12.948"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.938" endtime="20241118 23:52:12.948"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.938" endtime="20241118 23:52:12.948"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.938" endtime="20241118 23:52:12.948"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.938" endtime="20241118 23:52:12.948"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.938" endtime="20241118 23:52:12.948"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.938" endtime="20241118 23:52:12.948"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.937" endtime="20241118 23:52:12.948"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.937" endtime="20241118 23:52:12.948"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.937" endtime="20241118 23:52:12.948"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.937" endtime="20241118 23:52:12.948"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.937" endtime="20241118 23:52:12.949"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.937" endtime="20241118 23:52:12.949"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.937" endtime="20241118 23:52:12.949"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.937" endtime="20241118 23:52:12.949"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.937" endtime="20241118 23:52:12.949"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.937" endtime="20241118 23:52:12.949"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.937" endtime="20241118 23:52:12.949"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.936" endtime="20241118 23:52:12.949"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.936" endtime="20241118 23:52:12.949"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.936" endtime="20241118 23:52:12.949"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.936" endtime="20241118 23:52:12.949"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.936" endtime="20241118 23:52:12.949"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.936" endtime="20241118 23:52:12.949"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.936" endtime="20241118 23:52:12.949"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.936" endtime="20241118 23:52:12.949"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.936" endtime="20241118 23:52:12.949"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.936" endtime="20241118 23:52:12.949"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.935" endtime="20241118 23:52:12.949"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.935" endtime="20241118 23:52:12.949"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.935" endtime="20241118 23:52:12.949"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.935" endtime="20241118 23:52:12.949"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.935" endtime="20241118 23:52:12.949"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.935" endtime="20241118 23:52:12.949"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.935" endtime="20241118 23:52:12.949"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.935" endtime="20241118 23:52:12.949"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.935" endtime="20241118 23:52:12.949"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.935" endtime="20241118 23:52:12.949"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.934" endtime="20241118 23:52:12.949"/>
+</kw>
+<kw name="Go To Login Page" library="resource">
+<status status="NOT RUN" starttime="20241118 23:52:12.949" endtime="20241118 23:52:12.949"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.932" endtime="20241118 23:52:12.949"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.932" endtime="20241118 23:52:12.949">Setup failed:
+Maximum limit of started keywords and control structures exceeded.</status>
+</test>
+<kw name="Close Browser" library="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20241118 23:52:12.950" endtime="20241118 23:52:13.027"/>
+</kw>
+<status status="FAIL" starttime="20241118 23:52:12.301" endtime="20241118 23:52:13.027"/>
+</suite>
+<suite id="s1-s3" name="Register" source="/Users/mikaylinen/palautusrepositorio/viikko3/web-login/src/tests/register.robot">
+<kw name="Open And Configure Browser" library="resource" type="SETUP">
+<if>
+<branch type="IF" condition="$BROWSER == 'chrome'">
+<kw name="Evaluate" library="BuiltIn">
+<var>${options}</var>
+<arg>sys.modules['selenium.webdriver'].ChromeOptions()</arg>
+<arg>sys</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20241118 23:52:13.029" level="INFO">${options} = &lt;selenium.webdriver.chrome.options.Options object at 0x1069f9450&gt;</msg>
+<status status="PASS" starttime="20241118 23:52:13.029" endtime="20241118 23:52:13.029"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:13.029" endtime="20241118 23:52:13.029"/>
+</branch>
+<branch type="ELSE IF" condition="$BROWSER == 'firefox'">
+<kw name="Evaluate" library="BuiltIn">
+<var>${options}</var>
+<arg>sys.modules['selenium.webdriver'].FirefoxOptions()</arg>
+<arg>sys</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="NOT RUN" starttime="20241118 23:52:13.029" endtime="20241118 23:52:13.029"/>
+</kw>
+<status status="NOT RUN" starttime="20241118 23:52:13.029" endtime="20241118 23:52:13.029"/>
+</branch>
+<status status="PASS" starttime="20241118 23:52:13.029" endtime="20241118 23:52:13.029"/>
+</if>
+<if>
+<branch type="IF" condition="$HEADLESS == 'true'">
+<kw name="Set Selenium Speed" library="SeleniumLibrary">
+<arg>0</arg>
+<doc>Sets the delay that is waited after each Selenium command.</doc>
+<status status="PASS" starttime="20241118 23:52:13.029" endtime="20241118 23:52:13.029"/>
+</kw>
+<kw name="Call Method" library="BuiltIn">
+<arg>${options}</arg>
+<arg>add_argument</arg>
+<arg>--headless</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="PASS" starttime="20241118 23:52:13.029" endtime="20241118 23:52:13.029"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:13.029" endtime="20241118 23:52:13.029"/>
+</branch>
+<branch type="ELSE">
+<kw name="Set Selenium Speed" library="SeleniumLibrary">
+<arg>${DELAY}</arg>
+<doc>Sets the delay that is waited after each Selenium command.</doc>
+<status status="NOT RUN" starttime="20241118 23:52:13.030" endtime="20241118 23:52:13.030"/>
+</kw>
+<status status="NOT RUN" starttime="20241118 23:52:13.030" endtime="20241118 23:52:13.030"/>
+</branch>
+<status status="PASS" starttime="20241118 23:52:13.029" endtime="20241118 23:52:13.030"/>
+</if>
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>browser=${BROWSER}</arg>
+<arg>options=${options}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20241118 23:52:13.030" level="INFO">Opening browser 'chrome' to base url 'None'.</msg>
+<status status="PASS" starttime="20241118 23:52:13.030" endtime="20241118 23:52:13.589"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:13.029" endtime="20241118 23:52:13.590"/>
+</kw>
+<test id="s1-s3-t1" name="Register With Valid Username And Password" line="8">
+<kw name="Reset Application And Go To Register Page" type="SETUP">
+<kw name="Reset Application" library="resource">
+<kw name="Run Keyword" library="BuiltIn">
+<arg>AppLibrary.Reset Application</arg>
+<doc>Executes the given keyword with the given arguments.</doc>
+<kw name="Reset Application" library="AppLibrary">
+<status status="PASS" starttime="20241118 23:52:13.591" endtime="20241118 23:52:13.594"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:13.590" endtime="20241118 23:52:13.594"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:13.590" endtime="20241118 23:52:13.594"/>
+</kw>
+<kw name="Go To Register Page" library="resource">
+<kw name="Go To" library="SeleniumLibrary">
+<arg>${REGISTER_URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<msg timestamp="20241118 23:52:13.594" level="INFO">Opening url 'http://localhost:5001/register'</msg>
+<status status="PASS" starttime="20241118 23:52:13.594" endtime="20241118 23:52:13.647"/>
+</kw>
+<kw name="Register Page Should Be Open" library="resource">
+<kw name="Title Should Be" library="SeleniumLibrary">
+<arg>Register</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<msg timestamp="20241118 23:52:13.654" level="INFO">Page title is 'Register'.</msg>
+<status status="PASS" starttime="20241118 23:52:13.648" endtime="20241118 23:52:13.657"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:13.647" endtime="20241118 23:52:13.657"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:13.594" endtime="20241118 23:52:13.657"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:13.590" endtime="20241118 23:52:13.657"/>
+</kw>
+<kw name="Set Username">
+<arg>newuser</arg>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>username</arg>
+<arg>${username}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20241118 23:52:13.658" level="INFO">Typing text 'newuser' into text field 'username'.</msg>
+<status status="PASS" starttime="20241118 23:52:13.658" endtime="20241118 23:52:13.731"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:13.657" endtime="20241118 23:52:13.732"/>
+</kw>
+<kw name="Set Password">
+<arg>newpass123</arg>
+<kw name="Input Password" library="SeleniumLibrary">
+<arg>password</arg>
+<arg>${password}</arg>
+<doc>Types the given password into the text field identified by ``locator``.</doc>
+<msg timestamp="20241118 23:52:13.732" level="INFO">Typing password into text field 'password'.</msg>
+<msg timestamp="20241118 23:52:13.747" level="INFO">Temporally setting log level to: NONE</msg>
+<msg timestamp="20241118 23:52:13.765" level="INFO">Log level changed from NONE to INFO.</msg>
+<status status="PASS" starttime="20241118 23:52:13.732" endtime="20241118 23:52:13.765"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:13.732" endtime="20241118 23:52:13.765"/>
+</kw>
+<kw name="Set Password Confirmation">
+<arg>newpass123</arg>
+<kw name="Input Password" library="SeleniumLibrary">
+<arg>password_confirmation</arg>
+<arg>${password}</arg>
+<doc>Types the given password into the text field identified by ``locator``.</doc>
+<msg timestamp="20241118 23:52:13.766" level="INFO">Typing password into text field 'password_confirmation'.</msg>
+<msg timestamp="20241118 23:52:13.780" level="INFO">Temporally setting log level to: NONE</msg>
+<msg timestamp="20241118 23:52:13.799" level="INFO">Log level changed from NONE to INFO.</msg>
+<status status="PASS" starttime="20241118 23:52:13.766" endtime="20241118 23:52:13.799"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:13.765" endtime="20241118 23:52:13.799"/>
+</kw>
+<kw name="Submit Registration">
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>Register</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20241118 23:52:13.799" level="INFO">Clicking button 'Register'.</msg>
+<status status="PASS" starttime="20241118 23:52:13.799" endtime="20241118 23:52:13.839"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:13.799" endtime="20241118 23:52:13.839"/>
+</kw>
+<kw name="Registration Should Succeed">
+<kw name="Welcome Page Should Be Open" library="resource">
+<kw name="Title Should Be" library="SeleniumLibrary">
+<arg>Welcome to Ohtu Application!</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<msg timestamp="20241118 23:52:13.846" level="INFO">Page title is 'Welcome to Ohtu Application!'.</msg>
+<status status="PASS" starttime="20241118 23:52:13.839" endtime="20241118 23:52:13.847"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:13.839" endtime="20241118 23:52:13.847"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:13.839" endtime="20241118 23:52:13.847"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:13.590" endtime="20241118 23:52:13.847"/>
+</test>
+<test id="s1-s3-t2" name="Register With Too Short Username" line="15">
+<kw name="Reset Application And Go To Register Page" type="SETUP">
+<kw name="Reset Application" library="resource">
+<kw name="Run Keyword" library="BuiltIn">
+<arg>AppLibrary.Reset Application</arg>
+<doc>Executes the given keyword with the given arguments.</doc>
+<kw name="Reset Application" library="AppLibrary">
+<status status="PASS" starttime="20241118 23:52:13.847" endtime="20241118 23:52:13.849"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:13.847" endtime="20241118 23:52:13.849"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:13.847" endtime="20241118 23:52:13.849"/>
+</kw>
+<kw name="Go To Register Page" library="resource">
+<kw name="Go To" library="SeleniumLibrary">
+<arg>${REGISTER_URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<msg timestamp="20241118 23:52:13.849" level="INFO">Opening url 'http://localhost:5001/register'</msg>
+<status status="PASS" starttime="20241118 23:52:13.849" endtime="20241118 23:52:13.858"/>
+</kw>
+<kw name="Register Page Should Be Open" library="resource">
+<kw name="Title Should Be" library="SeleniumLibrary">
+<arg>Register</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<msg timestamp="20241118 23:52:13.864" level="INFO">Page title is 'Register'.</msg>
+<status status="PASS" starttime="20241118 23:52:13.858" endtime="20241118 23:52:13.864"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:13.858" endtime="20241118 23:52:13.864"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:13.849" endtime="20241118 23:52:13.864"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:13.847" endtime="20241118 23:52:13.864"/>
+</kw>
+<kw name="Set Username">
+<arg>a</arg>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>username</arg>
+<arg>${username}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20241118 23:52:13.865" level="INFO">Typing text 'a' into text field 'username'.</msg>
+<status status="PASS" starttime="20241118 23:52:13.865" endtime="20241118 23:52:13.893"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:13.864" endtime="20241118 23:52:13.893"/>
+</kw>
+<kw name="Set Password">
+<arg>validpass123</arg>
+<kw name="Input Password" library="SeleniumLibrary">
+<arg>password</arg>
+<arg>${password}</arg>
+<doc>Types the given password into the text field identified by ``locator``.</doc>
+<msg timestamp="20241118 23:52:13.893" level="INFO">Typing password into text field 'password'.</msg>
+<msg timestamp="20241118 23:52:13.906" level="INFO">Temporally setting log level to: NONE</msg>
+<msg timestamp="20241118 23:52:13.925" level="INFO">Log level changed from NONE to INFO.</msg>
+<status status="PASS" starttime="20241118 23:52:13.893" endtime="20241118 23:52:13.925"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:13.893" endtime="20241118 23:52:13.925"/>
+</kw>
+<kw name="Set Password Confirmation">
+<arg>validpass123</arg>
+<kw name="Input Password" library="SeleniumLibrary">
+<arg>password_confirmation</arg>
+<arg>${password}</arg>
+<doc>Types the given password into the text field identified by ``locator``.</doc>
+<msg timestamp="20241118 23:52:13.925" level="INFO">Typing password into text field 'password_confirmation'.</msg>
+<msg timestamp="20241118 23:52:13.938" level="INFO">Temporally setting log level to: NONE</msg>
+<msg timestamp="20241118 23:52:13.956" level="INFO">Log level changed from NONE to INFO.</msg>
+<status status="PASS" starttime="20241118 23:52:13.925" endtime="20241118 23:52:13.956"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:13.925" endtime="20241118 23:52:13.956"/>
+</kw>
+<kw name="Submit Registration">
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>Register</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20241118 23:52:13.956" level="INFO">Clicking button 'Register'.</msg>
+<status status="PASS" starttime="20241118 23:52:13.956" endtime="20241118 23:52:13.992"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:13.956" endtime="20241118 23:52:13.992"/>
+</kw>
+<kw name="Registration Should Fail With Message">
+<arg>Username must be at least 3 characters long</arg>
+<kw name="Register Page Should Be Open" library="resource">
+<kw name="Title Should Be" library="SeleniumLibrary">
+<arg>Register</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<msg timestamp="20241118 23:52:13.994" level="INFO">Page title is 'Register'.</msg>
+<status status="PASS" starttime="20241118 23:52:13.992" endtime="20241118 23:52:13.994"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:13.992" endtime="20241118 23:52:13.994"/>
+</kw>
+<kw name="Page Should Contain" library="SeleniumLibrary">
+<arg>${message}</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<msg timestamp="20241118 23:52:14.000" level="INFO">Current page contains text 'Username must be at least 3 characters long'.</msg>
+<status status="PASS" starttime="20241118 23:52:13.994" endtime="20241118 23:52:14.000"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:13.992" endtime="20241118 23:52:14.000"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:13.847" endtime="20241118 23:52:14.000"/>
+</test>
+<test id="s1-s3-t3" name="Register With Invalid Username" line="22">
+<kw name="Reset Application And Go To Register Page" type="SETUP">
+<kw name="Reset Application" library="resource">
+<kw name="Run Keyword" library="BuiltIn">
+<arg>AppLibrary.Reset Application</arg>
+<doc>Executes the given keyword with the given arguments.</doc>
+<kw name="Reset Application" library="AppLibrary">
+<status status="PASS" starttime="20241118 23:52:14.001" endtime="20241118 23:52:14.004"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:14.001" endtime="20241118 23:52:14.004"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:14.000" endtime="20241118 23:52:14.004"/>
+</kw>
+<kw name="Go To Register Page" library="resource">
+<kw name="Go To" library="SeleniumLibrary">
+<arg>${REGISTER_URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<msg timestamp="20241118 23:52:14.004" level="INFO">Opening url 'http://localhost:5001/register'</msg>
+<status status="PASS" starttime="20241118 23:52:14.004" endtime="20241118 23:52:14.012"/>
+</kw>
+<kw name="Register Page Should Be Open" library="resource">
+<kw name="Title Should Be" library="SeleniumLibrary">
+<arg>Register</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<msg timestamp="20241118 23:52:14.014" level="INFO">Page title is 'Register'.</msg>
+<status status="PASS" starttime="20241118 23:52:14.013" endtime="20241118 23:52:14.014"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:14.012" endtime="20241118 23:52:14.014"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:14.004" endtime="20241118 23:52:14.014"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:14.000" endtime="20241118 23:52:14.014"/>
+</kw>
+<kw name="Set Username">
+<arg>user123</arg>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>username</arg>
+<arg>${username}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20241118 23:52:14.014" level="INFO">Typing text 'user123' into text field 'username'.</msg>
+<status status="PASS" starttime="20241118 23:52:14.014" endtime="20241118 23:52:14.045"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:14.014" endtime="20241118 23:52:14.045"/>
+</kw>
+<kw name="Set Password">
+<arg>validpass123</arg>
+<kw name="Input Password" library="SeleniumLibrary">
+<arg>password</arg>
+<arg>${password}</arg>
+<doc>Types the given password into the text field identified by ``locator``.</doc>
+<msg timestamp="20241118 23:52:14.046" level="INFO">Typing password into text field 'password'.</msg>
+<msg timestamp="20241118 23:52:14.057" level="INFO">Temporally setting log level to: NONE</msg>
+<msg timestamp="20241118 23:52:14.075" level="INFO">Log level changed from NONE to INFO.</msg>
+<status status="PASS" starttime="20241118 23:52:14.046" endtime="20241118 23:52:14.075"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:14.045" endtime="20241118 23:52:14.075"/>
+</kw>
+<kw name="Set Password Confirmation">
+<arg>validpass123</arg>
+<kw name="Input Password" library="SeleniumLibrary">
+<arg>password_confirmation</arg>
+<arg>${password}</arg>
+<doc>Types the given password into the text field identified by ``locator``.</doc>
+<msg timestamp="20241118 23:52:14.075" level="INFO">Typing password into text field 'password_confirmation'.</msg>
+<msg timestamp="20241118 23:52:14.086" level="INFO">Temporally setting log level to: NONE</msg>
+<msg timestamp="20241118 23:52:14.103" level="INFO">Log level changed from NONE to INFO.</msg>
+<status status="PASS" starttime="20241118 23:52:14.075" endtime="20241118 23:52:14.103"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:14.075" endtime="20241118 23:52:14.103"/>
+</kw>
+<kw name="Submit Registration">
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>Register</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20241118 23:52:14.104" level="INFO">Clicking button 'Register'.</msg>
+<status status="PASS" starttime="20241118 23:52:14.104" endtime="20241118 23:52:14.132"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:14.103" endtime="20241118 23:52:14.132"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:14.000" endtime="20241118 23:52:14.132"/>
+</test>
+<test id="s1-s3-t4" name="Login After Successful Registration" line="28">
+<kw name="Reset Application And Go To Register Page" type="SETUP">
+<kw name="Reset Application" library="resource">
+<kw name="Run Keyword" library="BuiltIn">
+<arg>AppLibrary.Reset Application</arg>
+<doc>Executes the given keyword with the given arguments.</doc>
+<kw name="Reset Application" library="AppLibrary">
+<status status="PASS" starttime="20241118 23:52:14.133" endtime="20241118 23:52:14.136"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:14.133" endtime="20241118 23:52:14.136"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:14.133" endtime="20241118 23:52:14.136"/>
+</kw>
+<kw name="Go To Register Page" library="resource">
+<kw name="Go To" library="SeleniumLibrary">
+<arg>${REGISTER_URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<msg timestamp="20241118 23:52:14.136" level="INFO">Opening url 'http://localhost:5001/register'</msg>
+<status status="PASS" starttime="20241118 23:52:14.136" endtime="20241118 23:52:14.144"/>
+</kw>
+<kw name="Register Page Should Be Open" library="resource">
+<kw name="Title Should Be" library="SeleniumLibrary">
+<arg>Register</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<msg timestamp="20241118 23:52:14.146" level="INFO">Page title is 'Register'.</msg>
+<status status="PASS" starttime="20241118 23:52:14.144" endtime="20241118 23:52:14.146"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:14.144" endtime="20241118 23:52:14.146"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:14.136" endtime="20241118 23:52:14.146"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:14.133" endtime="20241118 23:52:14.146"/>
+</kw>
+<kw name="Set Username">
+<arg>newuser</arg>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>username</arg>
+<arg>${username}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20241118 23:52:14.146" level="INFO">Typing text 'newuser' into text field 'username'.</msg>
+<status status="PASS" starttime="20241118 23:52:14.146" endtime="20241118 23:52:14.184"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:14.146" endtime="20241118 23:52:14.184"/>
+</kw>
+<kw name="Set Password">
+<arg>newpass123</arg>
+<kw name="Input Password" library="SeleniumLibrary">
+<arg>password</arg>
+<arg>${password}</arg>
+<doc>Types the given password into the text field identified by ``locator``.</doc>
+<msg timestamp="20241118 23:52:14.184" level="INFO">Typing password into text field 'password'.</msg>
+<msg timestamp="20241118 23:52:14.213" level="INFO">Temporally setting log level to: NONE</msg>
+<msg timestamp="20241118 23:52:14.233" level="INFO">Log level changed from NONE to INFO.</msg>
+<status status="PASS" starttime="20241118 23:52:14.184" endtime="20241118 23:52:14.233"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:14.184" endtime="20241118 23:52:14.233"/>
+</kw>
+<kw name="Set Password Confirmation">
+<arg>newpass123</arg>
+<kw name="Input Password" library="SeleniumLibrary">
+<arg>password_confirmation</arg>
+<arg>${password}</arg>
+<doc>Types the given password into the text field identified by ``locator``.</doc>
+<msg timestamp="20241118 23:52:14.233" level="INFO">Typing password into text field 'password_confirmation'.</msg>
+<msg timestamp="20241118 23:52:14.245" level="INFO">Temporally setting log level to: NONE</msg>
+<msg timestamp="20241118 23:52:14.261" level="INFO">Log level changed from NONE to INFO.</msg>
+<status status="PASS" starttime="20241118 23:52:14.233" endtime="20241118 23:52:14.261"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:14.233" endtime="20241118 23:52:14.261"/>
+</kw>
+<kw name="Submit Registration">
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>Register</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20241118 23:52:14.261" level="INFO">Clicking button 'Register'.</msg>
+<status status="PASS" starttime="20241118 23:52:14.261" endtime="20241118 23:52:14.294"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:14.261" endtime="20241118 23:52:14.294"/>
+</kw>
+<kw name="Registration Should Succeed">
+<kw name="Welcome Page Should Be Open" library="resource">
+<kw name="Title Should Be" library="SeleniumLibrary">
+<arg>Welcome to Ohtu Application!</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<msg timestamp="20241118 23:52:14.297" level="INFO">Page title is 'Welcome to Ohtu Application!'.</msg>
+<status status="PASS" starttime="20241118 23:52:14.295" endtime="20241118 23:52:14.297"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:14.295" endtime="20241118 23:52:14.297"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:14.294" endtime="20241118 23:52:14.297"/>
+</kw>
+<kw name="Go To Ohtu Page">
+<kw name="Go To" library="SeleniumLibrary">
+<arg>${HOME_URL}/ohtu</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<msg timestamp="20241118 23:52:14.298" level="INFO">Opening url 'http://localhost:5001/ohtu'</msg>
+<status status="PASS" starttime="20241118 23:52:14.298" endtime="20241118 23:52:14.306"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:14.298" endtime="20241118 23:52:14.306"/>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>Logout</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20241118 23:52:14.307" level="INFO">Clicking button 'Logout'.</msg>
+<status status="PASS" starttime="20241118 23:52:14.307" endtime="20241118 23:52:14.347"/>
+</kw>
+<kw name="Go To Login Page" library="resource">
+<kw name="Go To" library="SeleniumLibrary">
+<arg>${LOGIN_URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<msg timestamp="20241118 23:52:14.347" level="INFO">Opening url 'http://localhost:5001/login'</msg>
+<status status="PASS" starttime="20241118 23:52:14.347" endtime="20241118 23:52:14.354"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:14.347" endtime="20241118 23:52:14.354"/>
+</kw>
+<kw name="Set Username">
+<arg>newuser</arg>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>username</arg>
+<arg>${username}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20241118 23:52:14.354" level="INFO">Typing text 'newuser' into text field 'username'.</msg>
+<status status="PASS" starttime="20241118 23:52:14.354" endtime="20241118 23:52:14.391"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:14.354" endtime="20241118 23:52:14.391"/>
+</kw>
+<kw name="Set Password">
+<arg>newpass123</arg>
+<kw name="Input Password" library="SeleniumLibrary">
+<arg>password</arg>
+<arg>${password}</arg>
+<doc>Types the given password into the text field identified by ``locator``.</doc>
+<msg timestamp="20241118 23:52:14.392" level="INFO">Typing password into text field 'password'.</msg>
+<msg timestamp="20241118 23:52:14.407" level="INFO">Temporally setting log level to: NONE</msg>
+<msg timestamp="20241118 23:52:14.426" level="INFO">Log level changed from NONE to INFO.</msg>
+<status status="PASS" starttime="20241118 23:52:14.392" endtime="20241118 23:52:14.427"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:14.392" endtime="20241118 23:52:14.427"/>
+</kw>
+<kw name="Submit Login">
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>Login</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20241118 23:52:14.427" level="INFO">Clicking button 'Login'.</msg>
+<status status="PASS" starttime="20241118 23:52:14.427" endtime="20241118 23:52:14.461"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:14.427" endtime="20241118 23:52:14.461"/>
+</kw>
+<kw name="Main Page Should Be Open" library="resource">
+<kw name="Title Should Be" library="SeleniumLibrary">
+<arg>Ohtu Application main page</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<msg timestamp="20241118 23:52:14.466" level="INFO">Page title is 'Ohtu Application main page'.</msg>
+<status status="PASS" starttime="20241118 23:52:14.462" endtime="20241118 23:52:14.466"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:14.461" endtime="20241118 23:52:14.466"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:14.133" endtime="20241118 23:52:14.466"/>
+</test>
+<test id="s1-s3-t5" name="Login After Failed Registration" line="42">
+<kw name="Reset Application And Go To Register Page" type="SETUP">
+<kw name="Reset Application" library="resource">
+<kw name="Run Keyword" library="BuiltIn">
+<arg>AppLibrary.Reset Application</arg>
+<doc>Executes the given keyword with the given arguments.</doc>
+<kw name="Reset Application" library="AppLibrary">
+<status status="PASS" starttime="20241118 23:52:14.467" endtime="20241118 23:52:14.469"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:14.467" endtime="20241118 23:52:14.469"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:14.467" endtime="20241118 23:52:14.469"/>
+</kw>
+<kw name="Go To Register Page" library="resource">
+<kw name="Go To" library="SeleniumLibrary">
+<arg>${REGISTER_URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<msg timestamp="20241118 23:52:14.469" level="INFO">Opening url 'http://localhost:5001/register'</msg>
+<status status="PASS" starttime="20241118 23:52:14.469" endtime="20241118 23:52:14.480"/>
+</kw>
+<kw name="Register Page Should Be Open" library="resource">
+<kw name="Title Should Be" library="SeleniumLibrary">
+<arg>Register</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<msg timestamp="20241118 23:52:14.481" level="INFO">Page title is 'Register'.</msg>
+<status status="PASS" starttime="20241118 23:52:14.480" endtime="20241118 23:52:14.481"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:14.480" endtime="20241118 23:52:14.481"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:14.469" endtime="20241118 23:52:14.481"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:14.467" endtime="20241118 23:52:14.481"/>
+</kw>
+<kw name="Set Username">
+<arg>ab</arg>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>username</arg>
+<arg>${username}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20241118 23:52:14.481" level="INFO">Typing text 'ab' into text field 'username'.</msg>
+<status status="PASS" starttime="20241118 23:52:14.481" endtime="20241118 23:52:14.508"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:14.481" endtime="20241118 23:52:14.508"/>
+</kw>
+<kw name="Set Password">
+<arg>newpass123</arg>
+<kw name="Input Password" library="SeleniumLibrary">
+<arg>password</arg>
+<arg>${password}</arg>
+<doc>Types the given password into the text field identified by ``locator``.</doc>
+<msg timestamp="20241118 23:52:14.509" level="INFO">Typing password into text field 'password'.</msg>
+<msg timestamp="20241118 23:52:14.521" level="INFO">Temporally setting log level to: NONE</msg>
+<msg timestamp="20241118 23:52:14.538" level="INFO">Log level changed from NONE to INFO.</msg>
+<status status="PASS" starttime="20241118 23:52:14.508" endtime="20241118 23:52:14.538"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:14.508" endtime="20241118 23:52:14.538"/>
+</kw>
+<kw name="Set Password Confirmation">
+<arg>newpass123</arg>
+<kw name="Input Password" library="SeleniumLibrary">
+<arg>password_confirmation</arg>
+<arg>${password}</arg>
+<doc>Types the given password into the text field identified by ``locator``.</doc>
+<msg timestamp="20241118 23:52:14.538" level="INFO">Typing password into text field 'password_confirmation'.</msg>
+<msg timestamp="20241118 23:52:14.550" level="INFO">Temporally setting log level to: NONE</msg>
+<msg timestamp="20241118 23:52:14.566" level="INFO">Log level changed from NONE to INFO.</msg>
+<status status="PASS" starttime="20241118 23:52:14.538" endtime="20241118 23:52:14.566"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:14.538" endtime="20241118 23:52:14.566"/>
+</kw>
+<kw name="Submit Registration">
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>Register</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20241118 23:52:14.566" level="INFO">Clicking button 'Register'.</msg>
+<status status="PASS" starttime="20241118 23:52:14.566" endtime="20241118 23:52:14.595"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:14.566" endtime="20241118 23:52:14.595"/>
+</kw>
+<kw name="Registration Should Fail With Message">
+<arg>Username must be at least 3 characters long</arg>
+<kw name="Register Page Should Be Open" library="resource">
+<kw name="Title Should Be" library="SeleniumLibrary">
+<arg>Register</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<msg timestamp="20241118 23:52:14.599" level="INFO">Page title is 'Register'.</msg>
+<status status="PASS" starttime="20241118 23:52:14.596" endtime="20241118 23:52:14.599"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:14.596" endtime="20241118 23:52:14.599"/>
+</kw>
+<kw name="Page Should Contain" library="SeleniumLibrary">
+<arg>${message}</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<msg timestamp="20241118 23:52:14.604" level="INFO">Current page contains text 'Username must be at least 3 characters long'.</msg>
+<status status="PASS" starttime="20241118 23:52:14.599" endtime="20241118 23:52:14.604"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:14.596" endtime="20241118 23:52:14.604"/>
+</kw>
+<kw name="Go To Login Page" library="resource">
+<kw name="Go To" library="SeleniumLibrary">
+<arg>${LOGIN_URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<msg timestamp="20241118 23:52:14.604" level="INFO">Opening url 'http://localhost:5001/login'</msg>
+<status status="PASS" starttime="20241118 23:52:14.604" endtime="20241118 23:52:14.614"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:14.604" endtime="20241118 23:52:14.614"/>
+</kw>
+<kw name="Set Username">
+<arg>ab</arg>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>username</arg>
+<arg>${username}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20241118 23:52:14.614" level="INFO">Typing text 'ab' into text field 'username'.</msg>
+<status status="PASS" starttime="20241118 23:52:14.614" endtime="20241118 23:52:14.641"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:14.614" endtime="20241118 23:52:14.641"/>
+</kw>
+<kw name="Set Password">
+<arg>newpass123</arg>
+<kw name="Input Password" library="SeleniumLibrary">
+<arg>password</arg>
+<arg>${password}</arg>
+<doc>Types the given password into the text field identified by ``locator``.</doc>
+<msg timestamp="20241118 23:52:14.642" level="INFO">Typing password into text field 'password'.</msg>
+<msg timestamp="20241118 23:52:14.654" level="INFO">Temporally setting log level to: NONE</msg>
+<msg timestamp="20241118 23:52:14.671" level="INFO">Log level changed from NONE to INFO.</msg>
+<status status="PASS" starttime="20241118 23:52:14.642" endtime="20241118 23:52:14.671"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:14.641" endtime="20241118 23:52:14.671"/>
+</kw>
+<kw name="Submit Login">
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>Login</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20241118 23:52:14.672" level="INFO">Clicking button 'Login'.</msg>
+<status status="PASS" starttime="20241118 23:52:14.672" endtime="20241118 23:52:14.706"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:14.672" endtime="20241118 23:52:14.706"/>
+</kw>
+<kw name="Login Should Fail With Message">
+<arg>Invalid username or password</arg>
+<kw name="Login Page Should Be Open" library="resource">
+<kw name="Title Should Be" library="SeleniumLibrary">
+<arg>Login</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<msg timestamp="20241118 23:52:14.708" level="INFO">Page title is 'Login'.</msg>
+<status status="PASS" starttime="20241118 23:52:14.706" endtime="20241118 23:52:14.708"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:14.706" endtime="20241118 23:52:14.708"/>
+</kw>
+<kw name="Page Should Contain" library="SeleniumLibrary">
+<arg>${message}</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<msg timestamp="20241118 23:52:14.714" level="INFO">Current page contains text 'Invalid username or password'.</msg>
+<status status="PASS" starttime="20241118 23:52:14.708" endtime="20241118 23:52:14.714"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:14.706" endtime="20241118 23:52:14.714"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:14.466" endtime="20241118 23:52:14.714"/>
+</test>
+<kw name="Close Browser" library="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20241118 23:52:14.714" endtime="20241118 23:52:14.786"/>
+</kw>
+<status status="PASS" starttime="20241118 23:52:13.027" endtime="20241118 23:52:14.786"/>
+</suite>
+<status status="FAIL" starttime="20241118 23:52:11.377" endtime="20241118 23:52:14.786"/>
+</suite>
+<statistics>
+<total>
+<stat pass="7" fail="3" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="7" fail="3" skip="0" id="s1" name="Tests">Tests</stat>
+<stat pass="2" fail="0" skip="0" id="s1-s1" name="Home">Tests.Home</stat>
+<stat pass="0" fail="3" skip="0" id="s1-s2" name="Login">Tests.Login</stat>
+<stat pass="5" fail="0" skip="0" id="s1-s3" name="Register">Tests.Register</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
