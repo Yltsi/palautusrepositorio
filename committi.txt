@@ -1,0 +1,3 @@
+Tee kolme committia (eli 3 kertaa muutos + add + commit)
+
+Muutos numero: 1
